@@ -40,9 +40,9 @@ The demo comes with a front-end to place orders manually and see their progress.
 1. Once you have kind installed, you can run the following command to create a local cluster:
 
 ```bash
-kind create cluster
+kind create cluster --config kind-config.yaml
 
-kubectl cluster-info --context kind-kind
+kubectl cluster-info --context kind-test-cluster
 ```
 
 2. In the [Conductor dashboard](https://conductor.diagrid.io/), click the _Connect Cluster_ button to configure a connection to your kubernetes cluster. Provide a name for the connection, choose _Local_ for the Kubernetes distribution, and ensure to select _Install Prerequisites_ and _Install Dapr_. Click _Create_ to create the manifest file.
@@ -73,7 +73,7 @@ kubectl get pods --all-namespaces
 ```bash
 helm repo add bitnami https://charts.bitnami.com/bitnami
 helm repo update
-helm install redis bitnami/redis --set image.tag=6.2 
+helm install redis bitnami/redis --set image.tag=6.2 --set replica.replicaCount=1
 ```
 
 2. Kafka is used as the message broker for async communication between services. Install Kafka via helm:
