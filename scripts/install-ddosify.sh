@@ -1,3 +1,2 @@
-wget -qO ddosify.deb https://github.com/ddosify/ddosify/releases/latest/download/ddosify_amd64.deb
-sudo apt install -y ./ddosify.deb
+curl -sSfL https://raw.githubusercontent.com/ddosify/ddosify/master/scripts/install.sh | sh
 ddosify -version
