@@ -193,7 +193,8 @@
           "action": "executeTerminalCommand",
           "command": "kubectl port-forward svc/pizza-store 8080:80",
           "insertTypingMode": "character-by-character",
-          "insertTypingSpeed": 50
+          "insertTypingSpeed": 50,
+          "terminalId": "kind"
         }
       ],
       "icons": {
@@ -272,6 +273,16 @@
         "start": "terminal",
         "end": ""
       }
+    },
+    {
+      "title": "Stop port forward",
+      "steps": [
+        {
+          "action": "executeTerminalCommand",
+          "command": "\u0003",
+          "terminalId": "kind"
+        }
+      ]
     }
   ]
 }
