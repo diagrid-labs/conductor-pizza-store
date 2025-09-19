@@ -29,13 +29,15 @@ When using Dapr, developers can trust that the [building block APIs](https://doc
 
 The demo comes with a front-end to place orders manually and see their progress. However, orders can also be placed direcly to the back-end with a REST client, such as the [VS Code REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client). To execute multiple order requests [Ddosify](https://github.com/ddosify/ddosify) can be used.
 
-> **The easiest way to run the demo is to use the devcontainer and open it in VSCode (requires Docker Desktop) or in a GitHub Codespace.** The devcontainer has the following preinstalled:
+> **The easiest way to run the demo is to use the devcontainer, open it in VSCode (requires Docker Desktop) or in a GitHub Codespace and use Demo Time.** The devcontainer has the following preinstalled:
 >  - kind & helm
 >  - Ddosify
 >  - VSCode REST client extension
->  - CodeTour extension
+>  - Demo Time extension
 
-## Installation
+If you've not using Demo Time, you can follow the instructions below to run the demo manually.
+
+## Kind Installation
 
 1. Once you have kind installed, you can run the following command to create a local cluster:
 

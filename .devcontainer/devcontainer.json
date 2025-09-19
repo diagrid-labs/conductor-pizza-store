@@ -36,14 +36,14 @@
 	"forwardPorts": [8080, 8082, 8084],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand":"bash .devcontainer/install-ddosify.sh",
+	"postCreateCommand":"bash .devcontainer/install-tools.sh",
 
 	// Configure tool-specific properties.
 	"customizations": {
 		"vscode": {
 			"extensions": [
 				"humao.rest-client",
-				"vsls-contrib.codetour"
+				"eliostruyf.vscode-demo-time"
 			]
 		}
 	},

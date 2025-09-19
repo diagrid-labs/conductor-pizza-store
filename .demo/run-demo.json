@@ -1,0 +1,277 @@
+{
+  "$schema": "https://demotime.show/demo-time.schema.json",
+  "title": "Run Demo Apps",
+  "description": "",
+  "version": 2,
+  "demos": [
+    {
+      "title": "Create kind cluster",
+      "steps": [
+        {
+          "action": "executeTerminalCommand",
+          "command": "kind create cluster --config kind-config.yaml",
+          "terminalId": "kind",
+          "insertTypingMode": "character-by-character",
+          "insertTypingSpeed": 100
+        }
+      ],
+      "icons": {
+        "start": "terminal",
+        "end": ""
+      }
+    },
+    {
+      "title": "Get cluster info",
+      "steps": [
+        {
+          "action": "executeTerminalCommand",
+          "command": "kubectl cluster-info --context kind-test-cluster",
+          "insertTypingMode": "character-by-character",
+          "insertTypingSpeed": 100,
+          "terminalId": "kind"
+        }
+      ],
+      "icons": {
+        "start": "terminal",
+        "end": ""
+      }
+    },
+    {
+      "title": "Open Conductor dashboard",
+      "steps": [
+        {
+          "action": "openWebsite",
+          "url": "https://conductor.diagrid.io/",
+          "openInVSCode": false
+        }
+      ],
+      "icons": {
+        "start": "globe",
+        "end": ""
+      }
+    },
+    {
+      "title": "Connect Instructions",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": ".demo/slides/conductor-connect.md"
+        }
+      ],
+      "icons": {
+        "start": "vm",
+        "end": ""
+      }
+    },
+    {
+      "title": "Paste kubectl command",
+      "steps": [
+        {
+          "action": "executeTerminalCommand",
+          "terminalId": "kind",
+          "command": " clear"
+        },
+        {
+          "action": "waitForTimeout",
+          "timeout": 1000
+        },
+        {
+          "action": "pasteFromClipboard"
+        },
+        {
+          "action": "pressEnter"
+        }
+      ],
+      "icons": {
+        "start": "terminal",
+        "end": ""
+      }
+    },
+    {
+      "title": "Check Dapr pods",
+      "steps": [
+        {
+          "action": "executeTerminalCommand",
+          "command": "kubectl get pods --all-namespaces",
+          "terminalId": "kind",
+          "insertTypingMode": "character-by-character",
+          "insertTypingSpeed": 100
+        }
+      ],
+      "icons": {
+        "start": "terminal",
+        "end": ""
+      }
+    },
+    {
+      "title": "View Conductor Cluster Insights",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": ".demo/slides/conductor-cluster.md"
+        }
+      ],
+      "icons": {
+        "start": "vm",
+        "end": ""
+      }
+    },
+    {
+      "title": "Install Redis",
+      "steps": [
+        {
+          "action": "executeTerminalCommand",
+          "terminalId": "kind",
+          "command": "helm repo add bitnami https://charts.bitnami.com/bitnami",
+          "insertTypingMode": "character-by-character",
+          "insertTypingSpeed": 50
+        },
+        {
+          "action": "waitForTimeout",
+          "timeout": 1000
+        },
+        {
+          "action": "executeTerminalCommand",
+          "terminalId": "kind",
+          "command": "helm repo update",
+          "insertTypingMode": "character-by-character",
+          "insertTypingSpeed": 50
+        },
+        {
+          "action": "waitForTimeout",
+          "timeout": 5000
+        },
+        {
+          "action": "executeTerminalCommand",
+          "command": "helm install redis bitnami/redis --set image.tag=6.2 --set replica.replicaCount=1",
+          "terminalId": "kind",
+          "insertTypingMode": "character-by-character",
+          "insertTypingSpeed": 50
+        }
+      ],
+      "icons": {
+        "start": "terminal",
+        "end": ""
+      }
+    },
+    {
+      "title": "Install Kafka",
+      "steps": [
+        {
+          "action": "executeTerminalCommand",
+          "terminalId": "kind",
+          "command": "helm install kafka oci://registry-1.docker.io/bitnamicharts/kafka --version 22.1.5 --set \"provisioning.topics[0].name=events-topic\" --set \"provisioning.topics[0].partitions=1\" --set \"persistence.size=250Mi\"",
+          "insertTypingMode": "character-by-character",
+          "insertTypingSpeed": 50
+        }
+      ],
+      "icons": {
+        "start": "terminal",
+        "end": ""
+      }
+    },
+    {
+      "title": "Install the Dapr applications",
+      "steps": [
+        {
+          "action": "executeTerminalCommand",
+          "terminalId": "kind",
+          "command": "kubectl apply -f k8s/",
+          "insertTypingMode": "character-by-character",
+          "insertTypingSpeed": 100
+        }
+      ],
+      "icons": {
+        "start": "terminal",
+        "end": ""
+      }
+    },
+    {
+      "title": "Port forward",
+      "steps": [
+        {
+          "action": "executeTerminalCommand",
+          "command": "kubectl port-forward svc/pizza-store 8080:80",
+          "insertTypingMode": "character-by-character",
+          "insertTypingSpeed": 50
+        }
+      ],
+      "icons": {
+        "start": "terminal",
+        "end": ""
+      }
+    },
+    {
+      "title": "Open front-end app",
+      "steps": [
+        {
+          "action": "openWebsite",
+          "openInVSCode": false,
+          "url": "http://localhost:8080"
+        }
+      ],
+      "icons": {
+        "start": "globe",
+        "end": ""
+      }
+    },
+    {
+      "title": "Install Ddosify",
+      "steps": [
+        {
+          "action": "executeTerminalCommand",
+          "command": "docker run -it --rm ddosify/ddosify",
+          "terminalId": "ddosify",
+          "insertTypingMode": "character-by-character",
+          "insertTypingSpeed": 50
+        }
+      ]
+    },
+    {
+      "title": "Get PizzaStore IP",
+      "steps": [
+        {
+          "action": "executeTerminalCommand",
+          "command": "kubectl get service/pizza-store -o jsonpath='{.spec.clusterIP}'",
+          "terminalId": "kubectl",
+          "insertTypingMode": "character-by-character",
+          "insertTypingSpeed": 50
+        }
+      ],
+      "icons": {
+        "start": "terminal",
+        "end": ""
+      }
+    },
+    {
+      "title": "Update IP address",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "pizza-store/ddosify_order.json",
+          "position": "8",
+          "highlightWholeLine": true
+        }
+      ],
+      "icons": {
+        "start": "code",
+        "end": ""
+      }
+    },
+    {
+      "title": "Run Ddosify",
+      "steps": [
+        {
+          "action": "executeTerminalCommand",
+          "terminalId": "ddosify",
+          "command": "ddosify -config pizza-store/ddosify_order.json",
+          "insertTypingSpeed": 50
+        }
+      ],
+      "icons": {
+        "start": "terminal",
+        "end": ""
+      }
+    }
+  ]
+}
