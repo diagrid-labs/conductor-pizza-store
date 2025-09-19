@@ -5,6 +5,19 @@
   "version": 2,
   "demos": [
     {
+      "title": "Demo intro",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": ".demo/slides/intro.md"
+        }
+      ],
+      "icons": {
+        "start": "vm",
+        "end": ""
+      }
+    },
+    {
       "title": "Create kind cluster",
       "steps": [
         {
@@ -271,6 +284,19 @@
       ],
       "icons": {
         "start": "terminal",
+        "end": ""
+      }
+    },
+    {
+      "title": "Conductor Apps Graph",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": ".demo/slides/conductor-apps-graph.md"
+        }
+      ],
+      "icons": {
+        "start": "vm",
         "end": ""
       }
     },
